@@ -31,13 +31,18 @@
 % \usepackage[sc]{example_font}
 % Loads text fonts
 \RequirePackage[T1]{fontenc}
+% One option is loading directly Times News Roman-like fonts
 \RequirePackage{newtxtext,newtxmath}
+% Another option uses fontspec package (only with LuaLaTeX or XeLaTeX)
+% \RequirePackage{fontspec}
+% Set the main font to a Times New Roman-like font
+% \setmainfont{Times New Roman} % or another Times New Roman-like font
 
 % Select font families. Select according to University rules
-\renewcommand*{\sfdefault}{ptm}
-\newcommand*{\numfont}{\fontfamily{ptm}\selectfont}
-\newcommand*{\headfont}{\bfseries\fontfamily{ptm}\selectfont}
-\newcommand*{\secfont}{\bfseries\fontfamily{ptm}\selectfont}
+%\renewcommand*{\sfdefault}{ptm}
+%\newcommand*{\numfont}{\fontfamily{ptm}\selectfont}
+%\newcommand*{\headfont}{\bfseries\fontfamily{ptm}\selectfont}
+%\newcommand*{\secfont}{\bfseries\fontfamily{ptm}\selectfont}
 % add lowercase black-board letters
 \DeclareFontFamily{U}{stix2bb}{\skewchar\font127 }
 \DeclareFontShape{U}{stix2bb}{m}{n} {<-> stix2-mathbb}{}
