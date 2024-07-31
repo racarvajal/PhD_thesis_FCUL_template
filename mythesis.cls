@@ -81,15 +81,54 @@
   }%
 }
 
-%this is for the number and lines above the chapter title
-\renewcommand{\@makechapterhead}[1]
-{{ \color{black} \ifnum \c@secnumdepth >\m@ne 
-\flushright \fontsize{1.5cm}{1em} \numfont  \color{black}
-%\flushright \fontsize{3cm}{1em}\numfont 
-\thechapter \par \nobreak \vskip 10\p@ \fi 
-\vspace{15pt}  \color{black}
-\hrule \hrule   \color{black}
-\vspace{20pt} \huge\centering \headfont #1\par \vspace{20pt} \color{black} \hrule \hrule \color{black}\nobreak \vskip 20\p@ }}
+\newcommand\@shorttitle{}
+% define \theshorttitle to what is given
+\newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
+
+% Define Chapter, Section, and Subsection headings
+% There are no regulations for these configurations,
+% Thus, users can change them as wanted.
+\RequirePackage{titlesec}
+\RequirePackage{etoolbox}
+\RequirePackage{fix-cm}  % Helps in fixing paging issues
+
+%Customize chapter headings
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\vspace{-2.5cm}\filleft{\fontsize{50}{20}\selectfont\textnormal{\thechapter}}} % Include chapter number
+  {0pt}
+  {\vspace*{-1cm}\color{black}\rule{\textwidth}{1pt}\vspace*{-0.35cm}\\\filcenter}
+  [\vspace*{-0.75cm}\color{black}\rule{\textwidth}{1pt}\vspace*{-1cm}]
+
+%Customize numberless chapter headings
+\titleformat{name=\chapter, numberless}[display]
+  {\normalfont\huge\bfseries}
+  {} % Do not include chapter number
+  {0pt}
+  {\vspace*{-5.3cm}\color{black}\rule{\textwidth}{1pt}\vspace*{-0.35cm}\\\filcenter}
+  [\vspace*{-0.75cm}\color{black}\rule{\textwidth}{1pt}\vspace*{-1cm}]
+
+% Customize sections and subsections (if needed)
+\titleformat{\section}[hang]
+  {\normalfont\LARGE\bfseries}
+  {\thesection}
+  {1em}
+  {}
+  []
+
+\titleformat{\subsection}[hang]
+  {\normalfont\Large\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+  []
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\large\bfseries}
+  {}
+  {1em}
+  {}
+  []
 
 %% Bibliography at the end of the thesis:
 \RequirePackage[natbib=true, sorting=nymt, backend=biber, maxcitenames=2, maxbibnames=3, minbibnames=2, mincitenames=1, style=authoryear-comp, sortcites=ymn, uniquename=false, uniquelist=false, giveninits=true, citetracker=true, backref=true]{biblatex}
@@ -193,32 +232,6 @@
   }
 }
 
-\newcommand\@shorttitle{}
-% define \theshorttitle to what is given
-\newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
-
-% %% HEADINGS
-% %% Chapters with numbers
-% \renewcommand{\@makechapterhead}[1]
-% {{\ifnum \c@secnumdepth >\m@ne 
-% \centering \fontsize{2cm}{1em}\numfont %this is if you want a font size bigger than HUGE. The important number is {2cm}. The second {1em} I think controls the spacing but I left it with the default value.
-% \thechapter \par \nobreak \vskip 10\p@ \fi 
-% \hrule \vspace{5pt} \huge\headfont #1\par \vspace{6pt} \hrule \nobreak \vskip 20\p@ }}
-% %%Chapters without numbers
-\renewcommand{\@makeschapterhead}[1]
-{{\hrule \vspace{20pt} % 5pt
-\headfont\huge \centering\headfont #1\par 
-\vspace{20pt} \hrule \nobreak \vskip 25\p@ }} % 6pt
-
-%% Useful to uncomment next block if you need to change the spacing between the titles of the Sections/Subsections and the text
-%\renewcommand\chapter{\@startsection {chapter}{1}{\z@}%
-%	{-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex }	{\Large\secfont}}
-%\renewcommand\section{\@startsection {section}{1}{\z@}%
-%	{-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex }	{\Large\secfont}}
-%%Sub-sections
-%\renewcommand\subsection{\@startsection {subsection}{1}{\z@}%
-%	{-3.25ex \@plus -1ex \@minus -.2ex}{1.5ex \@plus.2ex }{\large\secfont}}
-
 % Allows put list of tables and figures as all caps in ToC
 \let\oldaddcontentsline\addcontentsline
 \newcommand{\ADDCONTENTSLINE}[3]{%
@@ -226,14 +239,6 @@
 }
 \newcommand{\CAPinToC}{\let\addcontentsline\ADDCONTENTSLINE}
 \newcommand{\noCAPinToC}{\let\addcontentsline\oldaddcontentsline}
-
-\RequirePackage{etoolbox}  % Modify spaces after and before chapter* titles
-
-%\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
-\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{4pt}}{}{}% Removes space above \chapter* head
-%\patchcmd{\@makechapterhead}{\vskip 40\p@}{\bigbreak}{}{}% Removes space below \chapter head
-\patchcmd{\@makeschapterhead}{\vskip 40\p@}{\vskip 4pt}{}{} % Removes space below \chapter* head
-%\renewcommand{\@makeschapterhead}{\vspace*{25pt}}
 
 % Define headers and footers
 \RequirePackage{fancyhdr}

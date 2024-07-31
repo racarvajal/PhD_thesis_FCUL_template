@@ -1,7 +1,7 @@
 %% Set the page dimensions, font dimensions, and tells LaTeX to use the class "mythesis.cls" which contains your particular stylistic choices for the thesis.
 \documentclass[12pt]{mythesis}
 
-%\usepackage{showframe}  %% just for demo; it shows page frames
+\usepackage{showframe}  %% just for demo; it shows page frames
 %\usepackage[switch, modulo, pagewise]{lineno}  %% Show line numbers
 %\linenumbers  %% turn line numbers on
 %\usepackage{kantlipsum} %% just for demo; adds blindtext
@@ -21,7 +21,6 @@
 %% The following two lines ensure that you set your page dimensions and margins *exactly* as for University requirements.
 \usepackage{geometry}
 \geometry{margin=2.5cm, headheight=0.75cm}
-\usepackage{fix-cm}  % Helps in fixing paging issues
 
 \usepackage{aas_macros}  % Journals naming
 \usepackage{adjustbox}
@@ -172,10 +171,7 @@
 %  DATA AND SOFTWARE ACKNOWLEDGEMENTS  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begingroup
-\setstretch{1.241}
 \include{./preambles/data_software}
-\endgroup
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %               REFERENCES             %
