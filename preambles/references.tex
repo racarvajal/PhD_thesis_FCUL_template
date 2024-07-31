@@ -1,11 +1,11 @@
 \pagestyle{ReferencesStyle}
-\markboth{REFERENCES}{References} \label{references}
-\CAPinToC
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{\MakeUppercase{References}}
+\markboth{\MakeUppercase{References}}{References}
 
 \begingroup
 \setstretch{1.241}
 \begin{raggedright}
-\printbibliography[heading=bibintoc, title={References}]
+    \printbibliography[heading=none]
 \end{raggedright}
 \endgroup
-\noCAPinToC
