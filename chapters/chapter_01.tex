@@ -1,0 +1,96 @@
+\chapter[\MakeUppercase{Introduction}]{Introduction}\label{chap:chapter_01}
+\pagestyle{MyThesisStyle}
+
+\section[\MakeUppercase{First section of Introduction}]{First section of Introduction}\label{sec:first_section}
+\sectionmark{\MakeUppercase{First example section}}
+
+The text of this chapter is shown as written. Additionally, it is possible to include glossary entries, such as \gls{nasa}. The definitions for such entries must be included in the file \texttt{glossaries.tex} following the instructions from the packages \href{https://www.ctan.org/pkg/glossaries}{\texttt{glossaries}} and \href{https://ctan.org/pkg/glossaries-extra}{\texttt{glossaries-extra}}. The first time they are used, the full description is included. For additional uses, only the acronym is shown, as in \gls{nasa}.
+
+It is also possible to use symbols in the same way. For instance, to include something as \gls{hubble_constant}. Then, these symbols and acronyms will be shown in the preambles.
+
+References can also be used in the document. In-text names can be added, such as \textcite{MartinThrones}. It is also possible to show them in parentheses \parencite[such as:][]{whitman1855leaves}. Here, the commands \texttt{parencite} and \texttt{textcite} are preferred since they are more powerful than the older \texttt{citet} and \texttt{citep}.
+
+An example figure is shown in Fig.~\ref{fig:example_figure_01}. The size it will have when displayed can be selected.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\columnwidth]{example-image}
+    \caption[First example image]{First example image in this document. There are several ways in which a figure can be added.}
+    \label{fig:example_figure_01}
+\end{figure}
+
+Including more than one image per figure is also possible thanks to the package \href{https://ctan.org/pkg/subcaption}{\texttt{subcaption}}. Figure~\ref{fig:example_subfigure} shows and example of its implementation, where Figs.~\ref{fig:first_subfigure} and \ref{fig:second_subfigure} can be referenced individually.
+
+\begin{figure}[tbhp]
+    \centering
+    \begin{subfigure}[t]{0.40\textwidth}
+        \centering
+        \caption{First subfigure}
+        \includegraphics[width=0.99\linewidth]{example-image}
+        \label{fig:first_subfigure}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.40\textwidth}
+        \centering
+        \caption{Second subfigure}
+        \includegraphics[width=0.99\linewidth]{example-image}
+        \label{fig:second_subfigure}
+    \end{subfigure}
+    \caption[Example of figure with two images]{Example of figure with two images. They can be labelled and called individually.}
+    \label{fig:example_subfigure}
+\end{figure}
+
+\section[\MakeUppercase{Second section of Introduction}]{Second section of Introduction}\label{sec:second_section}
+\sectionmark{\MakeUppercase{Second example section}}
+
+As expected more sections can be added in one chapter. In it, it is possible to include, for instance, a table. The preferred way to do it is through the packages \href{https://ctan.org/pkg/threeparttable}{\texttt{threeparttable}} and \href{https://ctan.org/pkg/threeparttablex}{\texttt{threeparttablex}}. They allow, for instance, including footnotes directly below the table. Also, the package \href{https://ctan.org/pkg/booktabs}{\texttt{booktabs}} creates the commands \texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{cmidrule}. Additionally, the use of the package \href{https://ctan.org/pkg/siunitx}{\texttt{siunitx}} makes easier to align quantities in different columns. An example is shown in Table~\ref{table:example_table_a}.
+
+\begin{table}[tbhp]
+    \setlength{\tabcolsep}{3.5pt}
+    \centering % used for centering table
+    \caption[First example table]{First example table. It highlights the use of the packages \texttt{sinuitx}, \texttt{threeparttable}, and \texttt{booktabs}.}             % title of Table
+    \label{table:example_table_a}      % is used to refer this table in the text
+    \begin{threeparttable}
+    \begin{tabular}{c S S S S} % centered columns (5 columns)
+    \toprule
+    \multicolumn{5}{c}{First part} \\
+    Name\tnote{a}   & {Column 1}    & {Column 2}    & {Column 3}    & {Column 4}\\
+                    & {unit 1}      & {unit 2}      & {unit 3}      & {unit 4}  \\
+    \midrule
+    Row A           & 34.10         & 78.78         & 33.28         & 30.51     \\
+    Row B           & 51.80         & 49.71         &  8.77         &  7.12     \\
+    Row C           & 65.21         &  1.30         & 67.68         &  3.43     \\
+    Row D\tnote{b}  &  3.14         & 75.76         & 77.34         & 22.62     \\[0.5em]
+    \toprule
+    \multicolumn{5}{c}{Second part} \\
+    Name\tnote{a}   & {Column 1}    & {Column 2}    & {Column 3}    & {Column 4}\\
+                    & {unit 1}      & {unit 2}      & {unit 3}      & {unit 4}  \\
+    \midrule
+    Row A           & 63.59         & 25.47         & 33.00         & 16.52     \\
+    Row B           & 46.80         & 28.22         &  9.59         & 33.44     \\
+    Row C           & 24.63         &  7.76         & 28.80         &  0.32     \\
+    Row D\tnote{b}  &  9.73         & 51.02         & 38.72         & 38.37     \\
+    \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+        \item [a] Footnote for the first column of the table.
+        \item [b] Footnote for a particular row.
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+As expected, mathematical expressions can also be included in this document.
+
+\begin{equation}\label{eq:example_equation}
+    \sin^2(a)+\cos^2(a) = 1\,,
+\end{equation}
+
+\noindent where each element of Eq.\ref{eq:example_equation} can be defined. Also, matrices can be included, such as the following.
+
+\begin{equation}\label{eq:example_matrix}
+    \begin{pmatrix}
+      (1 - p)^{2} & p (1 - p)\\
+      (1 - p) p   & p^{2}
+    \end{pmatrix}\,.
+\end{equation}
+
+Another relevant feature is the use, as mentioned earlier, of the package \href{https://ctan.org/pkg/siunitx}{\texttt{siunitx}}. Adding the needed parameters in the preamble, it is possible to create new units and quantities that can be used. For instance, masses can be expressed as $\mathrm{M}_{\sun} \sim \qty{2e30}{\kg}$ and then use new units as $M_{a} = \qty{1e6}{\msun}$. Checking the file \texttt{mythesis.cls} additional units (and their definitions) can be found (e.g. $\unit{\milli\jansky}$, $\unit{\deg^{2}}$, $\unit{\angstrom}$). In the same way, it is also possible to include angular distances, such as $\ang[angle-symbol-over-decimal]{2;23;15.1}$, and celestial coordinates: right ascension $\ang[angle-symbol-degree=h, angle-symbol-minute=m, angle-symbol-second=s]{12;12;00}$ and declination $\ang{-20;00;00}$.

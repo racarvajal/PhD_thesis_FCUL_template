@@ -1,0 +1,199 @@
+%% Set the page dimensions, font dimensions, and tells LaTeX to use the class "mythesis.cls" which contains your particular stylistic choices for the thesis.
+\documentclass[12pt]{mythesis}
+
+%\usepackage{showframe}  %% just for demo; it shows page frames
+%\usepackage[switch, modulo, pagewise]{lineno}  %% Show line numbers
+%\linenumbers  %% turn line numbers on
+%\usepackage{kantlipsum} %% just for demo; adds blindtext
+%\usepackage[hpos={\ifodd\thepage \dimexpr0.92\paperwidth\else \dimexpr0.07\paperwidth\fi}, vpos=0.5\paperheight, angle=90, vanchor=m, hanchor=c, fontsize=0.8\marginparwidth, text={\normalfont DRAFT - {\today}\, - DRAFT}]{draftwatermark}  %% Add watermark
+
+% To help with breaking lines in paragraph (overfull \hbox)
+\setlength{\emergencystretch}{3em}
+
+\usepackage{breakcites}  % references do not go through margins
+\usepackage{csquotes}  % Quotation marks management
+\usepackage{doi}  % Add good DOI styling to bibliography
+\renewcommand{\doitext}{} % to make doi addresses links without spaces
+
+\usepackage{graphicx}
+\graphicspath{{figures/}} % include all folders with images
+
+%% The following two lines ensure that you set your page dimensions and margins *exactly* as for University requirements.
+\usepackage{geometry}
+\geometry{margin=2.5cm, headheight=0.75cm}
+\usepackage{fix-cm}  % Helps in fixing paging issues
+
+\usepackage{aas_macros}  % Journals naming
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{color}
+\usepackage[shortlabels]{enumitem}
+% Indentation for first line of Chapter
+\usepackage{indentfirst}
+
+% Bibliography (and not ToC) to the ToC
+\usepackage[nottoc]{tocbibind}
+\usepackage{afterpage}
+% To add to-do notes and comment blocks
+\setlength{\marginparwidth}{2cm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{comment}
+% To make pretty tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{threeparttable}  % Notes in tables
+\usepackage{threeparttablex}  % Notes in longtables
+\hfuzz=6.001pt
+\usepackage{etoolbox}
+\appto\TPTnoteSettings{\fontsize{9pt}{11pt}\selectfont}  % Font size notes in tables
+% Floats
+\usepackage{float}
+\restylefloat{figure}
+\usepackage{wrapfig}
+
+% To obtain dates in Roman numerals (only if needed)
+\usepackage{datetime}
+\makeatletter
+\newcommand\Romanyear{\@Roman{\year}}
+\makeatother
+
+% To show subsubsections in ToC
+\setcounter{tocdepth}{3}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+}
+
+% Load glossaries
+\makeglossaries
+\loadglsentries{./preambles/glossaries}
+\glsaddall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Start the document          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               FRONTPAGE              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newgeometry{hmargin=3cm, top=1cm, headsep=0.1cm, bmargin=1.5cm}
+\include{./preambles/frontpage}
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              COVER PAGE              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter % What it does is to set the page numbering to Roman numbering (I. II. etc.)
+\include{./preambles/coverpage}
+\restoregeometry % Revert to original geometry formatting
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              DEDICATION              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{./preambles/dedication}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           ACKNOWLEDGEMENTS           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{./preambles/acknowledgments}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           ABSTRACT - RESUMO          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{./preambles/resumo}
+
+\cleardoublepage
+
+\include{./preambles/abstract}
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       COMMUNICATION OF OUTPUTS       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{./preambles/output_communication}
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           TABLE OF CONTENTS          %
+%             LIST OF TABLES           %
+%            LIST OF FIGURES           %
+%                GLOSSARY              %
+%           LIST OF ACRONYMS           %
+%            LIST OF SYMBOLS           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{plain}
+
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+
+\CAPinToC % All entries in ToC will be CAPITALIZED from here on
+\phantomsection \label{listoftables}
+\listoftables
+
+\phantomsection \label{listoffigures}
+\listoffigures
+
+\phantomsection \label{glossary}
+\printglossary[type=acronym,style=long,title={List of acronyms}]
+\printglossary[type=symbols,style=long4col,title={List of symbols}]
+\noCAPinToC % Revert to original \addcontentsline formatting
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           TEXT  OF  THESIS           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Switch to chapters, which means it switch back to standard arabic page numbering (1, 2, etc.)
+\newpage
+\mainmatter
+
+%% Include the chapters (which have to have the same filename plus the .tex extension)
+\include{./chapters/chapter_01}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DATA AND SOFTWARE ACKNOWLEDGEMENTS  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begingroup
+\setstretch{1.241}
+\include{./preambles/data_software}
+\endgroup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               REFERENCES             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\input{./preambles/references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              APPENDICES              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{appendices} % It is like a chapter, so each appendix (A, B, C...) must to be considered as a section
+
+\input{./chapters/appendix_01}
+
+\end{appendices}
+
+\cleardoublepage
+
+\end{document}
