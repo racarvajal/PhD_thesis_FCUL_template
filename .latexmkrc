@@ -1,3 +1,7 @@
+#latex = lualatex
+#dvipdfm = lualatex -interaction=nonstopmode -jobname='%' '%'.dvi
+#pdflatex = lualatex -interaction=nonstopmode -jobname='%' '%'.pdf
+
 # This shows how to use the glossaries package
 # (http://www.ctan.org/pkg/glossaries) and the glossaries-extra package
 # (http://www.ctan.org/pkg/glossaries-extra) with latexmk.
