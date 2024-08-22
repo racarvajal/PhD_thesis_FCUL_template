@@ -408,7 +408,7 @@
 %% Define units (with siunitx)
 % Useful in tables and alignment
 \RequirePackage{siunitx}
-\sisetup{table-figures-uncertainty=1, table-alignment=center, separate-uncertainty=true, list-final-separator={,\, \text{and}\, }}
+\sisetup{table-figures-uncertainty=1, table-alignment=center, uncertainty-mode = separate, list-final-separator={,\, \text{and}\, }}
 \DeclareSIUnit\erg{erg}
 \DeclareSIUnit\magnitude{mag}
 \DeclareSIUnit\jansky{Jy}
