@@ -136,7 +136,7 @@
   []
 
 %% Bibliography at the end of the thesis:
-\RequirePackage[natbib=true, sorting=nymt, backend=biber, maxcitenames=2, maxbibnames=3, minbibnames=2, mincitenames=1, style=authoryear-comp, sortcites=ymn, uniquename=false, uniquelist=false, giveninits=true, citetracker=true, backref=true]{biblatex}
+\RequirePackage[natbib=true, sorting=nymt, backend=biber, maxcitenames=2, maxbibnames=3, minbibnames=2, mincitenames=1, style=authoryear-comp, sortcites=ymn, uniquename=false, uniquelist=false, giveninits=true, citetracker=true, backref=true, eprint=false]{biblatex}
 \DeclareNameAlias{sortname}{family-given}
 \renewcommand*{\bibfont}{\normalfont\footnotesize}
 \renewcommand*{\compcitedelim}{\addcomma\space} %semicolon and non-breaking space between compressed multiple citations by the same author
@@ -144,7 +144,7 @@
 \DefineBibliographyStrings{british}{citedas = {hereafter}}
 
 \addbibresource{PhD_thesis_FCUL_template.bib} % Bibliography file!!
-\AtEveryBibitem{\clearfield{eprint}}
+%\AtEveryBibitem{\clearfield{eprint}}
 \DeclareDelimFormat{nameyeardelim}{\addspace}
 \DeclareDelimFormat[textcite]{postnotedelim}{\addcolon\space}
 \DeclareDelimFormat[textcites]{postnotedelim}{\addcolon\space}
