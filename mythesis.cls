@@ -1,8 +1,27 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mythesis}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
-\ProcessOptions
-\LoadClass[a4paper,12pt,twoside]{book} % choose single or double page style
+
+\DeclareOption{showlinenum}{%
+  \RequirePackage[switch, modulo, pagewise]{lineno}%
+  \linenumbers%
+  }
+\DeclareOption{showframe}{%
+  \RequirePackage{showframe}%
+  }
+\DeclareOption{watermark}{%
+  \RequirePackage[hpos={\ifodd\thepage \dimexpr0.92\paperwidth\else \dimexpr0.07\paperwidth\fi}, vpos=0.5\paperheight, angle=90, vanchor=m, hanchor=c, fontsize=0.8\marginparwidth, text={\normalfont DRAFT - {\today}\, - DRAFT}]{draftwatermark}%
+  }
+\DeclareOption{provisional}{%
+  \def\frontpagefile{frontpage_provisional}%
+  \def\coverpagefile{coverpage_provisional}%
+  }
+\DeclareOption{final}{%
+  \def\frontpagefile{frontpage_final}%
+  \def\coverpagefile{coverpage_final}%
+  }
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\ProcessOptions\relax
+\LoadClass[a4paper,12pt,twoside]{book}
 
 %% All the languages you need go here
 \RequirePackage[utf8]{inputenc}
@@ -28,7 +47,7 @@
 
 %% FONTS
 %% This loads a font for both text and math modes. The website https://tug.org/FontCatalogue/ lists all available fonts.
-% \usepackage[sc]{example_font}
+% \RequirePackage[sc]{example_font}
 % Loads text fonts
 \RequirePackage[T1]{fontenc}
 % One option is loading directly Times News Roman-like fonts

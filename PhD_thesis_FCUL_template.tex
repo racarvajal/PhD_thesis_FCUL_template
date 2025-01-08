@@ -1,11 +1,12 @@
 %% Set the page dimensions, font dimensions, and tells LaTeX to use the class "mythesis.cls" which contains your particular stylistic choices for the thesis.
-\documentclass[12pt]{mythesis}
-
-%\usepackage{showframe}  %% just for demo; it shows page frames
-%\usepackage[switch, modulo, pagewise]{lineno}  %% Show line numbers
-%\linenumbers  %% turn line numbers on
-%\usepackage{kantlipsum} %% just for demo; adds blindtext
-%\usepackage[hpos={\ifodd\thepage \dimexpr0.92\paperwidth\else \dimexpr0.07\paperwidth\fi}, vpos=0.5\paperheight, angle=90, vanchor=m, hanchor=c, fontsize=0.8\marginparwidth, text={\normalfont DRAFT - {\today}\, - DRAFT}]{draftwatermark}  %% Add watermark
+\documentclass[12pt, provisional]{mythesis}
+% Possible options:
+% Text font   : '12pt'
+% showframe   : load package showframe for all pages
+% showlinenum : print line numbers every 10 lines
+% watermark   : add watermark with text 'DRAFT'
+% final       : load final front pages
+% provisional : load provisional front pages
 
 % To help with breaking lines in paragraph (overfull \hbox)
 \setlength{\emergencystretch}{3em}
@@ -86,7 +87,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newgeometry{hmargin=3cm, top=1cm, headsep=0.1cm, bmargin=1.5cm}
-\include{./preambles/frontpage}
+\include{./preambles/\frontpagefile}
 %\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,7 +95,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \frontmatter % What it does is to set the page numbering to Roman numbering (I. II. etc.)
-\include{./preambles/coverpage}
+\include{./preambles/\coverpagefile}
 \restoregeometry % Revert to original geometry formatting
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
