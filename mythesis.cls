@@ -59,37 +59,6 @@
 \definecolor{softblue}{HTML}{3D4AAF}
 \definecolor{light-gray}{gray}{0.5}
 
-% To make cites and references
-\RequirePackage[hidelinks, pdfusetitle, pdfdisplaydoctitle, breaklinks=true, linktoc=all]{hyperref} % If you want clickable links in the .pdf file
-% select colours in hyperlinks
-\hypersetup{
-    colorlinks=true,
-    linkcolor=softblue,
-    citecolor=softblue,
-    filecolor=.,      
-    urlcolor=softblue% color we defined above
-}
-
-% Glossary and acronyms
-\RequirePackage[acronym, abbreviations, symbols, nogroupskip, sort=standard, hyperfirst=true, shortcuts, nonumberlist]{glossaries-extra}
-\setabbreviationstyle[acronym]{long-short}
-\setabbreviationstyle[abbreviation]{long-short}
-\glssetcategoryattribute{general}{glossdesc}{firstuc} % first letter upper case in LoG
-\glssetcategoryattribute{acronym}{glossdesc}{firstuc} % first letter upper case in LoG
-\glssetcategoryattribute{symbol}{glossdesc}{firstuc} % first letter upper case in LoG
-\setlength{\glsdescwidth}{0.8\textwidth}
-\newcommand*\myglsentry[1]{%
-  \protect\ifglsused{#1}{%
-    \glsentryshort{#1}%
-  }{%
-    \glsentrylong{#1}%
-  }%
-}
-
-\newcommand\@shorttitle{}
-% define \theshorttitle to what is given
-\newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
-
 % Define Chapter, Section, and Subsection headings
 % There are no regulations for these configurations,
 % Thus, users can change them as wanted.
@@ -134,6 +103,37 @@
   {1em}
   {}
   []
+
+% To make cites and references
+\RequirePackage[hidelinks, pdfusetitle, pdfdisplaydoctitle, breaklinks=true, linktoc=all]{hyperref} % If you want clickable links in the .pdf file
+% select colours in hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=softblue,
+    citecolor=softblue,
+    filecolor=.,      
+    urlcolor=softblue% color we defined above
+}
+
+% Glossary and acronyms
+\RequirePackage[acronym, abbreviations, symbols, nogroupskip, sort=standard, hyperfirst=true, shortcuts, nonumberlist]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
+\setabbreviationstyle[abbreviation]{long-short}
+\glssetcategoryattribute{general}{glossdesc}{firstuc} % first letter upper case in LoG
+\glssetcategoryattribute{acronym}{glossdesc}{firstuc} % first letter upper case in LoG
+\glssetcategoryattribute{symbol}{glossdesc}{firstuc} % first letter upper case in LoG
+\setlength{\glsdescwidth}{0.8\textwidth}
+\newcommand*\myglsentry[1]{%
+  \protect\ifglsused{#1}{%
+    \glsentryshort{#1}%
+  }{%
+    \glsentrylong{#1}%
+  }%
+}
+
+\newcommand\@shorttitle{}
+% define \theshorttitle to what is given
+\newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
 
 %% Bibliography at the end of the thesis:
 \RequirePackage[natbib=true, sorting=nymt, backend=biber, maxcitenames=2, maxbibnames=3, minbibnames=2, mincitenames=1, style=authoryear-comp, sortcites=ymn, uniquename=false, uniquelist=false, giveninits=true, citetracker=true, backref=true, eprint=false]{biblatex}
