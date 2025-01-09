@@ -134,6 +134,48 @@
     urlcolor=softblue% color we defined above
 }
 
+\RequirePackage{breakcites}  % references do not go through margins
+\RequirePackage{csquotes}  % Quotation marks management
+\RequirePackage{doi}  % Add good DOI styling to bibliography
+\renewcommand*{\doitext}{} % to make doi addresses links
+
+%% The following two lines ensure that you set your page dimensions and margins *exactly* as for University requirements.
+\RequirePackage{geometry}
+\geometry{margin=2.5cm, headheight=0.75cm}
+
+\RequirePackage{aas_macros}  % Journals naming
+\RequirePackage{adjustbox}
+\RequirePackage{array}
+\RequirePackage{color}
+\RequirePackage[shortlabels]{enumitem}
+% Indentation for first line of Chapter
+\RequirePackage{indentfirst}
+
+% Bibliography (and not ToC) to the ToC
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage{afterpage}
+% To add to-do notes and comment blocks
+\setlength{\marginparwidth}{2cm}
+\RequirePackage[colorinlistoftodos]{todonotes}
+\RequirePackage{comment}
+% To make pretty tables
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+\RequirePackage{rotating}
+\RequirePackage{pdflscape}
+\RequirePackage{threeparttable}  % Notes in tables
+\RequirePackage{threeparttablex}  % Notes in longtables
+\hfuzz=6.001pt
+\RequirePackage{etoolbox}
+\appto\TPTnoteSettings{\fontsize{9pt}{11pt}\selectfont}  % Font size notes in tables
+% Floats
+\RequirePackage{float}
+\restylefloat{figure}
+\RequirePackage{wrapfig}
+\RequirePackage{graphicx}
+
 % Glossary and acronyms
 \RequirePackage[acronym, abbreviations, symbols, nogroupskip, sort=standard, hyperfirst=true, shortcuts, nonumberlist]{glossaries-extra}
 \setabbreviationstyle[acronym]{long-short}
@@ -244,19 +286,19 @@
     \begin{singlespace}
         Juri:\\% de acordo com o edital da prova
         \begin{description}[leftmargin=!, labelwidth=\widthof{Presidente:}, font=\normalfont, nosep]
-            \item[Presidente:] (\@jurypresident)
+            \item[Presidente:] \@jurypresident
         \end{description}
         \begin{description}[leftmargin=!, labelwidth=\widthof{Vogais:}, font=\normalfont, nosep]
-            \item[Vogais:] (\@jurymemberA)
-            \item (\@jurymemberB)
-            \item (\@jurymemberC)
-            \item (\@jurymemberD)
+            \item[Vogais:] \@jurymemberA
+            \item \@jurymemberB
+            \item \@jurymemberC
+            \item \@jurymemberD
             \ifthenelse{\isundefined{\@jurymemberD} \OR \equal{\@jurymemberD}{}}
             {}
-            {\item (\@jurymemberD)}
+            {\item \@jurymemberD}
             \ifthenelse{\isundefined{\@jurymemberE} \OR \equal{\@jurymemberE}{}}
             {}
-            {\item (\@jurymemberE)}
+            {\item \@jurymemberE}
         \end{description}
     \end{singlespace}
   \end{raggedright}

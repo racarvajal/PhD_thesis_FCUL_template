@@ -11,49 +11,7 @@
 % To help with breaking lines in paragraph (overfull \hbox)
 \setlength{\emergencystretch}{3em}
 
-\usepackage{breakcites}  % references do not go through margins
-\usepackage{csquotes}  % Quotation marks management
-\usepackage{doi}  % Add good DOI styling to bibliography
-\renewcommand{\doitext}{} % to make doi addresses links
-
-\usepackage{graphicx}
-\graphicspath{{figures/}} % include all folders with images
-
-%% The following two lines ensure that you set your page dimensions and margins *exactly* as for University requirements.
-\usepackage{geometry}
-\geometry{margin=2.5cm, headheight=0.75cm}
-
-\usepackage{aas_macros}  % Journals naming
-\usepackage{adjustbox}
-\usepackage{array}
-\usepackage{color}
-\usepackage[shortlabels]{enumitem}
-% Indentation for first line of Chapter
-\usepackage{indentfirst}
-
-% Bibliography (and not ToC) to the ToC
-\usepackage[nottoc]{tocbibind}
-\usepackage{afterpage}
-% To add to-do notes and comment blocks
-\setlength{\marginparwidth}{2cm}
-\usepackage[colorinlistoftodos]{todonotes}
-\usepackage{comment}
-% To make pretty tables
-\usepackage{tabularx}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{longtable}
-\usepackage{rotating}
-\usepackage{pdflscape}
-\usepackage{threeparttable}  % Notes in tables
-\usepackage{threeparttablex}  % Notes in longtables
-\hfuzz=6.001pt
-\usepackage{etoolbox}
-\appto\TPTnoteSettings{\fontsize{9pt}{11pt}\selectfont}  % Font size notes in tables
-% Floats
-\usepackage{float}
-\restylefloat{figure}
-\usepackage{wrapfig}
+\graphicspath{{figures/}} % include all folders with images as {folderA/}{folderB}...
 
 % To obtain dates in Roman numerals (only if needed)
 \usepackage{datetime}
@@ -86,13 +44,13 @@
 \degree{Doutoramento em Designa\c{c}\~{a}o do Doutoramento}
 \speciality{Designa\c{c}\~{a}o da Especialidade, se aplic\'{a}vel}  % can leave blank
 \supervisors{Orientador 1}{Orientador 2}{Orientador 3}  % Up to three supervisors
-\jurypresident{Nome, categoria e institui\c{c}\~{a}o do Presidente}
-\jurymembers{Nome, categoria e institui\c{c}\~{a}o do Vogal}
-    {Nome, categoria e institui\c{c}\~{a}o do Vogal}
-    {Nome, categoria e institui\c{c}\~{a}o do Vogal}
-    {Nome, categoria e institui\c{c}\~{a}o do Vogal}
-    {Nome, categoria e institui\c{c}\~{a}o do Vogal}
-    {Nome, categoria e institui\c{c}\~{a}o do Vogal}  % Minimum four, maximum six members
+\jurypresident{(Nome, categoria e institui\c{c}\~{a}o do Presidente)}  % Can remove parenthesis
+\jurymembers{(Nome, categoria e institui\c{c}\~{a}o do Vogal)}
+    {(Nome, categoria e institui\c{c}\~{a}o do Vogal)}
+    {(Nome, categoria e institui\c{c}\~{a}o do Vogal)}
+    {(Nome, categoria e institui\c{c}\~{a}o do Vogal)}
+    {(Nome, categoria e institui\c{c}\~{a}o do Vogal)}
+    {(Nome, categoria e institui\c{c}\~{a}o do Vogal)}  % Minimum four, maximum six members
 \coveracknowledgement{Men\c{c}\~{a}o a colabora\c{c}\~{o}es ou entidades financiadoras (se aplic\'{a}vel)}  % Only for cover page
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
