@@ -150,6 +150,122 @@
   }%
 }
 
+% Define details of thesis
+% Usage: \command{<value>}
+\newcommand*{\authorlongname}[1]{
+            \def\@authorlongname{#1}
+}
+\newcommand*{\authorshortname}[1]{
+            \def\@authorshortname{#1}
+}
+\newcommand*{\thesistitle}[1]{
+            \def\@thesistitle{#1}
+}
+\newcommand*{\degree}[1]{
+            \def\@degree{#1}
+}
+\newcommand*{\speciality}[1]{
+            \def\@speciality{#1}
+}
+\newcommand*{\supervisors}[3]{
+            \def\@supervisorA{#1}
+            \def\@supervisorB{#2}
+            \def\@supervisorC{#3}
+}
+\newcommand*{\supervisorA}[1]{
+            \def\@supervisorA{#1}
+}
+\newcommand*{\supervisorB}[1]{
+            \def\@supervisorB{#1}
+}
+\newcommand*{\supervisorC}[1]{
+            \def\@supervisorC{#1}
+}
+\newcommand*{\jurypresident}[1]{
+            \def\@jurypresident{#1}
+}
+\newcommand*{\jurymembers}[6]{
+              \def\@jurymemberA{#1}
+              \def\@jurymemberB{#2}
+              \def\@jurymemberC{#3}
+              \def\@jurymemberD{#4}
+              \def\@jurymemberE{#5}
+              \def\@jurymemberF{#6}
+}
+\newcommand*{\jurymemberA}[1]{
+              \def\@jurymemberA{#1}
+}
+\newcommand*{\jurymemberB}[1]{
+              \def\@jurymemberB{#1}
+}
+\newcommand*{\jurymemberC}[1]{
+              \def\@jurymemberC{#1}
+}
+\newcommand*{\jurymemberD}[1]{
+              \def\@jurymemberD{#1}
+}
+\newcommand*{\jurymemberE}[1]{
+              \def\@jurymemberE{#1}
+}
+\newcommand*{\jurymemberF}[1]{
+              \def\@jurymemberF{#1}
+}
+\newcommand*{\coveracknowledgement}[1]{
+              \def\@coveracknowledgement{#1}
+}
+
+\newcommand*{\showdegree}{
+  \textbf{\@degree}\\
+  \ifthenelse{\isundefined{\@speciality} \OR \equal{\@speciality}{}}
+    {}
+    {\@speciality\\}
+}
+
+\newcommand*{\showthesistitle}{
+  \textbf{\foreignlanguage{british}{\@thesistitle}}\\% can change language
+}
+
+\newcommand*{\showauthorlongname}{
+  \@authorlongname\\%
+}
+
+\newcommand*{\showsupervisors}{
+  \@supervisorA\\
+  \ifthenelse{\isundefined{\@supervisorB} \OR \equal{\@supervisorB}{}}
+    {}
+    {\@supervisorB\\}
+  \ifthenelse{\isundefined{\@supervisorC} \OR \equal{\@supervisorC}{}}
+    {}
+    {\@supervisorC\\}
+}
+
+\newcommand*{\showjury}{
+  \begin{raggedright}
+    \begin{singlespace}
+        Juri:\\% de acordo com o edital da prova
+        \begin{description}[leftmargin=!, labelwidth=\widthof{Presidente:}, font=\normalfont, nosep]
+            \item[Presidente:] (\@jurypresident)
+        \end{description}
+        \begin{description}[leftmargin=!, labelwidth=\widthof{Vogais:}, font=\normalfont, nosep]
+            \item[Vogais:] (\@jurymemberA)
+            \item (\@jurymemberB)
+            \item (\@jurymemberC)
+            \item (\@jurymemberD)
+            \ifthenelse{\isundefined{\@jurymemberD} \OR \equal{\@jurymemberD}{}}
+            {}
+            {\item (\@jurymemberD)}
+            \ifthenelse{\isundefined{\@jurymemberE} \OR \equal{\@jurymemberE}{}}
+            {}
+            {\item (\@jurymemberE)}
+        \end{description}
+    \end{singlespace}
+  \end{raggedright}
+}
+
+\newcommand*{\showcoveracknowledgement}{
+  \@coveracknowledgement\\% also \foreignlanguage{british}{@coveracknowledgement\\}
+}
+
 \newcommand\@shorttitle{}
 % define \theshorttitle to what is given
 \newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
@@ -273,7 +389,7 @@
     \fancyfoot[C]{\thepage}
     \fancyhead[LE]{\LastMark{2e-left}} % \leftmark
     \fancyhead[RO]{\FirstMark{2e-right}} % \rightmark
-    \fancyhead[LO]{A. NAME}
+    \fancyhead[LO]{\MakeUppercase{\@authorshortname}}
     \fancyhead[RE]{}
 }
 \fancypagestyle{FirstPages}{%
@@ -288,7 +404,7 @@
     \fancyfoot[C]{\thepage}
     \fancyhead[LE]{\LastMark{2e-left}}
     \fancyhead[RO]{}
-    \fancyhead[LO]{A. NAME}
+    \fancyhead[LO]{\MakeUppercase{\@authorshortname}}
     \fancyhead[RE]{}
 }
 \fancypagestyle{ReferencesStyle}{%
