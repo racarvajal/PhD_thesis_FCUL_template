@@ -305,7 +305,16 @@
 }
 
 \newcommand*{\showcoveracknowledgement}{
-  \@coveracknowledgement\\% also \foreignlanguage{british}{@coveracknowledgement\\}
+  \begin{singlespace}
+    \@coveracknowledgement\\% also \foreignlanguage{british}{@coveracknowledgement\\}
+  \end{singlespace}
+}
+
+\newcommand*{\blankpage}{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
 }
 
 \newcommand\@shorttitle{}
