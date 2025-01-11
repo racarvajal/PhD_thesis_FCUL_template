@@ -1,17 +1,17 @@
 %% Set the page dimensions, font dimensions, and tells LaTeX to use the class "mythesis.cls" which contains your particular stylistic choices for the thesis.
 \documentclass[12pt, provisional]{mythesis}
 % Possible options:
-% Text font   : '12pt'
+% Text font   : '12pt', '11pt', etc. FCUL requires '12pt'
 % showframe   : load package showframe for all pages
-% showlinenum : print line numbers every 10 lines
+% showlinenum : print line numbers every 5 lines
 % watermark   : add watermark with text 'DRAFT'
-% final       : load final front pages
+% final       : load final front pages (default option, can be omitted)
 % provisional : load provisional front pages
 
 % To help with breaking lines in paragraph (overfull \hbox)
 \setlength{\emergencystretch}{3em}
 
-\graphicspath{{figures/}} % include all folders with images as {folderA/}{folderB}...
+\graphicspath{{figures/}} % include all folders with images as {folderA/}{folderB/}...
 
 % To obtain dates in Roman numerals (only if needed)
 \usepackage{datetime}

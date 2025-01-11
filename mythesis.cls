@@ -1,27 +1,50 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mythesis}
+\ProvidesClass{mythesis}[2025/01/11]
 
-\DeclareOption{showlinenum}{%
-  \RequirePackage[switch, modulo, pagewise]{lineno}%
-  \linenumbers%
-  }
-\DeclareOption{showframe}{%
-  \RequirePackage{showframe}%
-  }
-\DeclareOption{watermark}{%
-  \RequirePackage[hpos={\ifodd\thepage \dimexpr0.92\paperwidth\else \dimexpr0.07\paperwidth\fi}, vpos=0.5\paperheight, angle=90, vanchor=m, hanchor=c, fontsize=0.8\marginparwidth, text={\normalfont DRAFT - {\today}\, - DRAFT}]{draftwatermark}%
-  }
-\DeclareOption{provisional}{%
-  \def\frontpagefile{frontpage_provisional}%
-  \def\coverpagefile{coverpage_provisional}%
-  }
-\DeclareOption{final}{%
-  \def\frontpagefile{frontpage_final}%
-  \def\coverpagefile{coverpage_final}%
-  }
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\def\mythesis@baseclass{book}
+
+% Define boolean switches for options
+\newif\ifshowlinenum
+\newif\ifshowframe
+\newif\ifwatermark
+\newif\ifprovisional
+% Set default to final (not provisional)
+\provisionalfalse
+
+% Declare options
+\DeclareOption{showlinenum}{\showlinenumtrue}
+\DeclareOption{showframe}{\showframetrue}
+\DeclareOption{watermark}{\watermarktrue}
+\DeclareOption{provisional}{\provisionaltrue}
+\DeclareOption{final}{\provisionalfalse}
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\mythesis@baseclass}}
+
 \ProcessOptions\relax
-\LoadClass[a4paper,12pt,twoside]{book}
+\LoadClass[a4paper, 12pt, twoside]{\mythesis@baseclass}
+
+% Set front page and cover page based on provisional flag
+\ifprovisional
+  \newcommand{\frontpagefile}{frontpage_provisional}%
+  \newcommand{\coverpagefile}{coverpage_provisional}%
+\else
+  \newcommand{\frontpagefile}{frontpage_final}%
+  \newcommand{\coverpagefile}{coverpage_final}%
+\fi
+
+% Load packages based on options
+\ifshowlinenum
+  \RequirePackage[switch, modulo, pagewise]{lineno}
+  \linenumbers
+\fi
+
+\ifshowframe
+  \RequirePackage{showframe}
+\fi
+
+\ifwatermark
+  \RequirePackage[hpos={\ifodd\thepage \dimexpr0.92\paperwidth\else \dimexpr0.07\paperwidth\fi}, vpos=0.5\paperheight, angle=90, vanchor=m, hanchor=c, fontsize=0.8\marginparwidth, text={\normalfont DRAFT - {\today}\, - DRAFT}]{draftwatermark}
+\fi
 
 %% All the languages you need go here
 \RequirePackage[utf8]{inputenc}
@@ -528,72 +551,6 @@
   }
 \makeatother
 
-%% Additional commands commonly used
-\newcommand*\centerstack[2]{%
-  \ensuremath{%
-    \mathrel{%
-      \mathchoice{%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\displaystyle##$\hfil\cr#1\cr#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\textstyle##$\hfil\cr#1\cr#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\scriptstyle##$\hfil\cr#1\cr#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\scriptscriptstyle##$\hfil\cr#1\cr#2\cr}%
-        }%
-      }%
-    }%
-  }%
-}
-\newcommand*\centerstackskip[6]{%
-  \ensuremath{%
-    \mathrel{%
-      \mathchoice{%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\displaystyle##$\hfil\cr
-            #1\cr\noalign{\vskip#3}#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\textstyle##$\hfil\cr
-            #1\cr\noalign{\vskip#4}#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\scriptstyle##$\hfil\cr
-            #1\cr\noalign{\vskip#5}#2\cr}%
-        }%
-      }
-      {%
-        \vcenter{%
-          \offinterlineskip
-          \halign{\hfil$\scriptscriptstyle##$\hfil\cr
-            #1\cr\noalign{\vskip#6}#2\cr}%
-        }%
-      }%
-    }%
-  }%
-}
-
 \let\olddiameter\diameter
 %% Define units (with siunitx)
 % Useful in tables and alignment
@@ -634,27 +591,17 @@
 \newcommand*\farcs{\ensuremath{\overset{\prime\prime}{.}}}
 \newcommand*\fp{\ensuremath{\overset{\scriptscriptstyle\text{p}}{.}}}
 \newcommand*\cor{\ensuremath{\mathrel{\widehat{=}}}}
-\newcommand*\la{\centerstack{<}{\sim}}
-\newcommand*\ga{\centerstack{>}{\sim}}
-\newcommand*\sol{\centerstack{\sim}{<}}
-\newcommand*\sog{\centerstack{\sim}{>}}
-\newcommand*\lse{\centerstack{<}{\simeq}}
-\newcommand*\gse{\centerstack{>}{\simeq}}
-\newcommand*\grole{\centerstackskip{>}{<}{-1.5\p@}{-1.5\p@}{-1\p@}{-.5\p@}}
-\newcommand*\leogr{\centerstackskip{<}{>}{-1.5\p@}{-1.5\p@}{-1\p@}{-.5\p@}}
-\newcommand*\loa{\centerstack{<}{\approx}}
-\newcommand*\goa{\centerstack{>}{\approx}}
-\newcommand*\getsto{\centerstack{\gets}{\to}}
-\newcommand*\lid{\centerstackskip{<}{=}{1.2\p@}{1.2\p@}{1\p@}{0.9\p@}}
-\newcommand*\gid{\centerstackskip{>}{=}{1.2\p@}{1.2\p@}{1\p@}{0.9\p@}}
 \newcommand\smion[2]{#1$\;$\protect \footnotesize{\rmfamily\@Roman{#2}}\small}% 
 \newcommand\scion[2]{#1$\;$\protect \tiny{\rmfamily\@Roman{#2}}\scriptsize}%
 % \ion{<element symbol>}{<degree of ionization>}
 \DeclareRobustCommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
 % \element[<electrical charge>][<number of nucleons>][<number of protons>][<number of neutrons>]{<element symbol>}
-\newcommand*\element[1][]{%
-  \def\aa@element@tr{#1}%
-  \aa@element
+\newcommand*\element[5][]{%
+  \ensuremath{%
+    \vphantom{x}^{#2}_{#3}
+    \mathrm{#5}
+    \vphantom{x}^{#1}_{#4}
+  }%
 }
 
 \endinput
