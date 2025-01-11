@@ -595,12 +595,12 @@
 \newcommand\scion[2]{#1$\;$\protect \tiny{\rmfamily\@Roman{#2}}\scriptsize}%
 % \ion{<element symbol>}{<degree of ionization>}
 \DeclareRobustCommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
-% \element[<electrical charge>][<number of nucleons>][<number of protons>][<number of neutrons>]{<element symbol>}
+% \element[<element symbol>]{<electrical charge>}{<number of nucleons>}{<number of protons>}{<number of neutrons>}
 \newcommand*\element[5][]{%
   \ensuremath{%
-    \vphantom{x}^{#2}_{#3}
-    \mathrm{#5}
-    \vphantom{x}^{#1}_{#4}
+    \vphantom{x}^{#3}_{#4}
+    \mathrm{#1}
+    \vphantom{x}^{#2}_{#5}
   }%
 }
 
