@@ -78,6 +78,10 @@
 \definecolor{softblue}{HTML}{3D4AAF}
 \definecolor{light-gray}{gray}{0.5}
 
+% Hack to permit automatic hyphenation after an actual hyphen. From TUGboat
+\newcommand{\hyph}{-\penalty\z@\hskip\z@skip }
+\renewcommand{\slash}{/\penalty\z@\hskip\z@skip } % "breakable" slash
+
 % Define Chapter, Section, and Subsection headings
 % There are no regulations for these configurations,
 % Thus, users can change them as wanted.
