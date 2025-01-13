@@ -348,6 +348,14 @@
 % define \theshorttitle to what is given
 \newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
 
+\AtEndPreamble{
+  \hypersetup{
+      pdftitle=\@thesistitle,
+      pdfauthor=\@authorshortname,
+      pdfsubject={FCUL thesis}
+  }
+}
+
 %% Bibliography at the end of the thesis:
 \RequirePackage[natbib=true, sorting=nymt, backend=biber, maxcitenames=2, maxbibnames=3, minbibnames=2, mincitenames=1, style=authoryear-comp, sortcites=ymn, uniquename=false, uniquelist=false, giveninits=true, citetracker=true, backref=true, eprint=false]{biblatex}
 \DeclareNameAlias{sortname}{family-given}
