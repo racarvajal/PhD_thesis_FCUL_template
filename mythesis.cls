@@ -502,23 +502,27 @@
 }
 
 % Redefinition of "\cleardoublepage" to add the message "This page intentionally left blank"
-\makeatletter
-    \def\cleardoublepage{\clearpage%
-        \if@twoside
-            \ifodd\c@page\else
-                \vspace*{\fill}
-                \hfill
+% Only add message after front and cover pages
+\newcounter{cleardoublepagecounter}
+\setcounter{cleardoublepagecounter}{0}
+\def\cleardoublepage{\clearpage%
+    \stepcounter{cleardoublepagecounter}%
+    \if@twoside
+        \ifodd\c@page\else
+            \vspace*{\fill}
+            \hfill
+            \ifnum\value{cleardoublepagecounter}>2
                 \begin{center}
                 This page intentionally left blank.
                 \end{center}
-                \vspace{\fill}
-                \thispagestyle{empty}
-                \newpage
-                \if@twocolumn\hbox{}\newpage\fi
             \fi
+            \vspace{\fill}
+            \thispagestyle{empty}
+            \newpage
+            \if@twocolumn\hbox{}\newpage\fi
         \fi
-    }
-\makeatother
+    \fi
+}
 
 \RequirePackage[page, toc, header]{appendix} %Extremely useful if you need appendices in some of the chapters, otherwise they will not be numbered properly!
 \renewcommand{\appendixtocname}{APPENDICES}  % rename 'Appendices' in ToC
@@ -526,8 +530,7 @@
 \renewcommand*{\appendixname}{APPENDIX}  % rename each appendix in ToC
 
 % Add the message "This page intentionally left blank" after first Appendix page (if page=true)
-\makeatletter
-  \renewcommand{\@chap@pppage}{%
+\renewcommand{\@chap@pppage}{%
   \clear@ppage
   \thispagestyle{plain}%
   \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
@@ -556,8 +559,7 @@
   \if@tempswa
     \twocolumn
   \fi
-  }
-\makeatother
+}
 
 \let\olddiameter\diameter
 %% Define units (with siunitx)
@@ -603,12 +605,12 @@
 \newcommand\scion[2]{#1$\;$\protect \tiny{\rmfamily\@Roman{#2}}\scriptsize}%
 % \ion{<element symbol>}{<degree of ionization>}
 \DeclareRobustCommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
-% \element[<element symbol>]{<electrical charge>}{<number of nucleons>}{<number of protons>}{<number of neutrons>}
-\newcommand*\element[5][]{%
+% \element{<electrical charge>}{<number of nucleons>}{<number of protons>}{<number of neutrons>}[<element symbol>]
+\NewDocumentCommand{\element}{O{}O{}O{}O{}m}{%
   \ensuremath{%
-    \vphantom{x}^{#3}_{#4}
-    \mathrm{#1}
-    \vphantom{x}^{#2}_{#5}
+    \vphantom{x}^{#2}_{#3}
+    \mathrm{#5}
+    \vphantom{x}^{#1}_{#4}
   }%
 }
 
