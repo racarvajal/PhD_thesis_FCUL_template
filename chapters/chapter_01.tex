@@ -94,3 +94,13 @@ As expected, mathematical expressions can also be included in this document.
 \end{equation}
 
 Another relevant feature is the use, as mentioned earlier, of the package \href{https://ctan.org/pkg/siunitx}{\texttt{siunitx}}. Adding the needed parameters in the preamble, it is possible to create new units and quantities that can be used. For instance, masses can be expressed as $\mathrm{M}_{\sun} \sim \qty{2e30}{\kg}$ and then use new units as $M_{a} = \qty{1e6}{\msun}$. Checking the file \texttt{mythesis.cls} additional units (and their definitions) can be found (e.g. $\unit{\milli\jansky}$, $\unit{\deg^{2}}$, $\unit{\angstrom}$). In the same way, it is also possible to include angular distances, such as $\ang[angle-symbol-over-decimal]{2;23;15.1}$, and celestial coordinates: right ascension $\ang[angle-symbol-degree=h, angle-symbol-minute=m, angle-symbol-second=s]{12;12;00}$ and declination $\ang{-20;00;00}$.
+
+Other definitions provided by \texttt{mythesis.cls} include chemical elements. They can be written as \texttt{\textbackslash{}element\{<electrical charge>\}\{<number of nucleons>\}\{<number of protons>\}\{<number of neutrons>\}[<element symbol>]}. For instance:
+
+\begin{description}[nosep]
+    \item \element{He}  % Just the element symbol
+    \item \element[+2]{He}  % With charge
+    \item \element[+2][3]{He}  % With charge and nucleon number
+    \item \element[+2][3][4]{He}  % With charge, nucleon number, and proton number
+    \item \element[+2][3][4][5]{He}  % All parameters specified
+\end{description}
