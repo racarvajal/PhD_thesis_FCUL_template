@@ -47,7 +47,7 @@
 \fi
 
 %% All the languages you need go here
-\RequirePackage[utf8]{inputenc}
+%\RequirePackage[utf8]{inputenc}
 \RequirePackage[portuguese,british]{babel}  % Last one listed is the one initially used
 \addto\captionsbritish{% Replace "british" with the language you use
         \renewcommand{\contentsname}{Contents}  % rename 'Contents'
@@ -72,13 +72,14 @@
 %% This loads a font for both text and math modes. The website https://tug.org/FontCatalogue/ lists all available fonts.
 % \RequirePackage[sc]{example_font}
 % Loads text fonts
-\RequirePackage[T1]{fontenc}
+%\RequirePackage[T1]{fontenc}
 % One option is loading directly Times News Roman-like fonts
-\RequirePackage{newtxtext,newtxmath}
+%\RequirePackage{newtxtext,newtxmath}
 % Another option uses fontspec package (only with LuaLaTeX or XeLaTeX)
-% \RequirePackage{fontspec}
+\RequirePackage{fontspec}
 % Set the main font to a Times New Roman-like font
-% \setmainfont{Times New Roman} % or another Times New Roman-like font
+%\setmainfont{Times New Roman} % or another Times New Roman-like font
+\setmainfont{TeX Gyre Termes}  % Times-like, Unicode-native
 
 % Select font families. Select according to University rules
 %\renewcommand*{\sfdefault}{ptm}
@@ -388,9 +389,9 @@
 {\printfield{doi}}
 {}}
 % Re-defiine cedilla for bibliography entries
-\newcommand\cedilla{}
-\let\cedilla\c
-\DeclareUnicodeCharacter{0229}{\c{e}}
+%\newcommand\cedilla{}
+%\let\cedilla\c
+%\DeclareUnicodeCharacter{0229}{\c{e}}
 % Use following commands to break long url links
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
