@@ -5,6 +5,9 @@ $latexmk_opts = '-file-line-error';
 # cleaner logs
 $silent = 1;
 
+# Main file to compile
+@default_files = ('PhD_thesis_FCUL_template.tex');
+
 # This shows how to use the glossaries package
 # (http://www.ctan.org/pkg/glossaries) and the glossaries-extra package
 # (http://www.ctan.org/pkg/glossaries-extra) with latexmk.
