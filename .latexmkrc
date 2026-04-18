@@ -1,6 +1,9 @@
-#latex = lualatex
-#dvipdfm = lualatex -interaction=nonstopmode -jobname='%' '%'.dvi
-#pdflatex = lualatex -interaction=nonstopmode -jobname='%' '%'.pdf
+# Use LuaLaTeX
+$pdf_mode = 4;
+# Better error reporting
+$latexmk_opts = '-file-line-error';
+# cleaner logs
+$silent = 1;
 
 # This shows how to use the glossaries package
 # (http://www.ctan.org/pkg/glossaries) and the glossaries-extra package
