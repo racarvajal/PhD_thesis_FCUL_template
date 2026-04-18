@@ -4,7 +4,7 @@ PhD Thesis $\LaTeX$ template document for the Faculdade de Ciências at the Univ
 
 The design of the main `.tex` and `.cls` files has been inspired by the [`thesis_template`](https://github.com/racarvajal/thesis_template) Github repository.
 
-The files in this repository have been optimised to be compiled using [`latexmk`](https://ctan.org/pkg/latexmk). A nice description of how to use it can be found at, for instance [https://mg.readthedocs.io/latexmk.html](https://mg.readthedocs.io/latexmk.html) and [https://www.cantab.net/users/johncollins/latexmk/](https://www.cantab.net/users/johncollins/latexmk/). The main point is that, maybe, `latexmk` is already installed in the machine used to compile the files in this repository and no further configurations or changes are needed.
+The files in this repository have been optimised to be compiled with [`luatex`](https://www.luatex.org) using [`latexmk`](https://ctan.org/pkg/latexmk). A nice description of how to use it can be found at, for instance [https://mg.readthedocs.io/latexmk.html](https://mg.readthedocs.io/latexmk.html) and [https://www.cantab.net/users/johncollins/latexmk/](https://www.cantab.net/users/johncollins/latexmk/). The main point is that, most probably, `latexmk` and `luatex` are already installed in the machine used to compile the files in this repository and no further configurations or changes are needed.
 
 The need for using `latexmk` and not just plain $\LaTeX$ commands comes from the use of the `glossaries` and `glossaries-extra` packages.
 
